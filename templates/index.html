@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unsaid Talks</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5e6ff, #e8f0ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4b3f72;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #6c5ce7;
+        }
+
+        /* Main container */
+        .container {
+            width: 90%;
+            max-width: 850px;
+            text-align: center;
+            padding: 40px 25px;
+        }
+
+        h1 {
+            font-size: 55px;
+            color: #4b3f72;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        /* Main card */
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Random thought */
+        .random-thought {
+            background: #f8f7ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .random-thought h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .random-thought p {
+            margin-top: 12px;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Textarea */
+        textarea {
+            width: 100%;
+            height: 160px;
+            padding: 18px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            resize: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #8c7ae6;
+        }
+
+        /* Main share button */
+        .share-btn {
+            margin-top: 20px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #6c5ce7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .share-btn:hover {
+            background: #5849c7;
+        }
+
+        /* Listen section */
+        h2 {
+            margin-top: 30px;
+            color: #4b3f72;
+        }
+
+        .listen-text {
+            margin-top: 8px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Thought cards */
+        .thoughts {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .thought {
+            background: #f8f7ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .anonymous {
+            font-size: 13px;
+            color: #8c7ae6;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .thought p {
+            line-height: 1.6;
+        }
+
+        /* Listening button */
+        .listen-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #a29bfe;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .listen-btn:hover {
+            background: #8178e6;
+        }
+
+        /* Rating */
+        .rating {
+            margin-top: 18px;
+        }
+
+        .rating p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .rating button {
+            margin: 2px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 10px;
+            background: #f1efff;
+            color: #555;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .rating button:hover {
+            background: #ddd8ff;
+        }
+
+        .rating-result {
+            margin-top: 8px;
+            color: #6c5ce7 !important;
+            font-weight: bold;
+        }
+
+        /* Bottom note */
+        .note {
+            margin-top: 25px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Unsaid Talks 🌙
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#share">Share</a>
+            <a href="#listen">Listen</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Main content -->
+    <div class="container" id="home">
+
+        <h1>Unsaid Talks 🌙</h1>
+
+        <p class="tagline">
+            Some thoughts just need to be heard.
+        </p>
+
+
+        <div class="card" id="share">
+
+            <!-- Random thought -->
+            <div class="random-thought">
+
+                <h2>✨ A Thought for You</h2>
+
+                <p id="randomThought"></p>
+
+            </div>
+
+
+            <!-- Share thought -->
+            <form method="POST">
+
+                <textarea
+                    name="thought"
+                    placeholder="Write what you can't say out loud..."
+                    required>
+                </textarea>
+
+                <button class="share-btn" type="submit">
+                    Share Your Thought
+                </button>
+
+            </form>
+
+
+            <!-- Listen section -->
+            <h2 id="listen">
+                Listen to Thoughts 👂
+            </h2>
+
+            <p class="listen-text">
+                You are not alone. Someone's words may need to be heard today.
+            </p>
+
+
+            <!-- Thoughts -->
+            <div class="thoughts">
+
+                {% for thought in thoughts %}
+
+                <div class="thought">
+
+                    <div class="anonymous">
+                        Anonymous 🌙
+                    </div>
+
+                    <p>
+                        {{ thought }}
+                    </p>
+
+
+                    <!-- Listening -->
+                    <button
+                        class="listen-btn"
+                        type="button"
+                        onclick="listenToThought(this)">
+                        I'm Listening 🤍 <span>0</span>
+                    </button>
+
+
+                    <!-- Rating -->
+                    <div class="rating">
+
+                        <p>
+                            Rate this thought:
+                        </p>
+
+                        <button
+                            type="button"
+                            onclick="rateThought(this, 1)">
+                            ⭐
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="rateThought(this, 2)">
+                            ⭐
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="rateThought(this, 3)">
+                            ⭐
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="rateThought(this, 4)">
+                            ⭐
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="rateThought(this, 5)">
+                            ⭐
+                        </button>
+
+                        <p class="rating-result"></p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <p class="note">
+                Your thoughts deserve a space without judgement. 🤍
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        const thoughts = [
+            "You don't have to have everything figured out today. 🌱",
+            "Small progress is still progress. ✨",
+            "It's okay to take a break and breathe. 🤍",
+            "Your thoughts matter, even when you don't say them out loud.",
+            "One difficult day doesn't define your whole journey. 🌙",
+            "Be patient with yourself. You're learning and growing.",
+            "Sometimes the quietest thoughts need the most space.",
+            "You are allowed to start again. 🌸",
+            "Not every thought needs an answer. Sometimes it just needs to be heard. 👂",
+            "Keep going. Your story is still being written. ✨"
+        ];
+
+
+        // Random thought
+        const randomIndex =
+            Math.floor(Math.random() * thoughts.length);
+
+        document.getElementById("randomThought").innerText =
+            thoughts[randomIndex];
+
+
+        // I'm Listening counter
+        function listenToThought(button) {
+
+            const count =
+                button.querySelector("span");
+
+            let currentCount =
+                parseInt(count.innerText);
+
+            currentCount++;
+
+            count.innerText =
+                currentCount;
+
+            button.innerHTML =
+                "Listening 🤍 <span>" +
+                currentCount +
+                "</span>";
+        }
+
+
+        // Rating
+        function rateThought(button, rating) {
+
+            const ratingBox =
+                button.parentElement;
+
+            const result =
+                ratingBox.querySelector(".rating-result");
+
+            result.innerText =
+                "You rated this thought " +
+                rating +
+                "/5 ⭐";
+        }
+
+    </script>
+
+</body>
+
+</html>
